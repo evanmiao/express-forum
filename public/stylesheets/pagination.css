@@ -1,0 +1,3 @@
+.pagination{display:flex;margin:5px;background-color:#fff;border-radius:5px;text-align:center}.pagination .currentPage{color:#80bd1e}.pagination button{background-color:#fff;border:1px solid #ddd;outline:none;cursor:pointer;color:#333;height:29px;padding:5px 10px}.pagination button:first-child{border-top-left-radius:5px;border-bottom-left-radius:5px}.pagination button:last-child{border-top-right-radius:5px;border-bottom-right-radius:5px}.pagination button:not(:first-child){border-left:none}.pagination button:hover{background-color:#f5f5f5}
+
+/*# sourceMappingURL=pagination.css.map */

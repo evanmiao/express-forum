@@ -1,0 +1,53 @@
+{{extend './_layouts/layout.html'}}
+
+{{block 'title'}}{{topic.title}}{{/block}}
+
+{{block 'head'}}
+<link rel="stylesheet" href="/public/stylesheets/topic.css">
+<link rel="stylesheet" href="/public/stylesheets/sidebar.css">
+{{/block}}
+
+{{block 'content'}}
+{{include './_partials/sidebar.html'}}
+<div class="container">
+  <div class="topic_header">
+    <div class="header">
+      <div class="topic_title">
+        <span class="{{if topic.good}}put_good{{/if}} {{if topic.top}}put_top{{/if}}">
+          <span>{{topic | tabFormat}}</span>
+        </span>{{topic.title}}
+      </div>
+      <ul>
+        <li><span>发布于 {{topic.create_at | dateFormat}}</span></li>
+        <li>&nbsp;<span>作者<a href="/user/{{topic.author.loginname}}">{{topic.author.loginname}}</a></span></li>
+        <li>&nbsp;<span>{{topic.visit_count}} 次浏览</span></li>
+        <li>&nbsp;<span>来自 {{topic | tabFormat}}</span></li>
+      </ul>
+    </div>
+    <div class="topic_content" id="content">{{@topic.content}}</div>
+  </div>
+  <div id="reply">
+    <div class="topbar">{{topic.reply_count}} 回复</div>
+    {{each topic.replies reply}}
+    <div class="replySec">
+      <div class="replyUp clearfix">
+        <a href="/user/{{reply.author.loginname}}"><img src="{{reply.author.avatar_url}}" /></a>
+        <a href="/user/{{reply.author.loginname}}"><span class="loginname">{{reply.author.loginname}}</span></a>
+        <span> {{$index+1}} 楼</span><span> • {{reply.create_at | dateFormat}}</span>
+        {{if reply.author.loginname === topic.author.loginname}}
+        <span class="author">作者</span>
+        {{/if}}
+        {{if reply.ups.length > 0}}
+        <span class="ups">
+          <img src="/public/images/submit.svg" class="submit" /><span class="ups_length">{{reply.ups.length}}</span>
+        </span>
+        {{else}}
+        <span></span>
+        {{/if}}
+        <div class="content">{{@reply.content}}</div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+{{/block}}

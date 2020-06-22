@@ -1,0 +1,86 @@
+.autherinfo {
+  width: 290px;
+  float: right;
+
+  .authersummay {
+    border-radius: 3px;
+    background-color: #fff;
+
+    .topbar {
+      padding: 13px;
+      background-color: #f6f6f6;
+      font-size: 13px;
+    }
+
+    img {
+      height: 48px;
+      width: 48px;
+      border-radius: 3px;
+      margin: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #778087;
+
+      .loginname {
+        width: 100px;
+        float: right;
+        margin-top: 22px;
+        margin-right: 121px;
+        font-size: 16px;
+      }
+    }
+
+    .user_profile {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+
+  .recent_replies,
+  .recent_topics {
+    border-radius: 3px;
+    background-color: #fff;
+
+    .topics_title,
+    .replies_title {
+      border-top: 10px #ddd solid;
+      padding: 12px;
+      background-color: rgba(212, 205, 205, 0.17);
+      font-size: 0.75rem;
+      margin: 0;
+      border-radius: 3px 3px 0 0;
+    }
+
+    .inner {
+      padding: 10px;
+
+      ul {
+        list-style: none;
+        margin-bottom: 10px;
+
+        li {
+          white-space: nowrap;
+          max-width: 270px;
+          line-height: 30px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          a {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-size: 12px;
+            text-decoration: none;
+            color: #778087;
+          }
+        }
+      }
+    }
+  }
+}
+
+.authersummay .topbar {
+  margin-top: 0px;
+}

@@ -1,0 +1,49 @@
+{{extend './_layouts/layout.html'}}
+
+{{block 'title'}}首页{{/block}}
+
+{{block 'head'}}
+<link rel="stylesheet" href="/public/stylesheets/index.css">
+<link rel="stylesheet" href="/public/stylesheets/pagination.css">
+{{/block}}
+
+{{block 'content'}}
+<div class="PostList">
+  <div class="posts">
+    <ul>
+      <li>
+        <div class="toobar">
+          <span class="active">全部</span>
+          <span>精华</span>
+          <span>分享</span>
+          <span>问答</span>
+          <span>招聘</span>
+        </div>
+      </li>
+      {{each topics}}
+      <li>
+        <a href="userinfo/{{$value.author.loginname}}">
+          <img src="{{$value.author.avatar_url}}" />
+        </a>
+        <span class="allcount">
+          <span class="reply_count">{{$value.reply_count}}</span>
+          /<span class="visit_count"> {{$value.visit_count}}</span>
+        </span>
+        <span class="{{if $value.good}}put_good{{/if}} {{if $value.top}}put_top{{/if}} {{if !$value.good && !$value.top}}topiclist_tab{{/if}}">
+          <span>{{$value | tabFormat}}</span>
+        </span>
+        <a href="topic/{{$value.id}}" class="topic_link">{{$value.title}}</a>
+        <span class="last_reply">{{$value.last_reply_at | dateFormat}}</span>
+      </li>
+      {{/each}}
+      <li>
+        {{include './_partials/pagination.html'}}
+      </li>
+    </ul>
+  </div>
+</div>
+{{/block}}
+
+{{block 'script'}}
+<script src="/public/javascripts/main.js"></script>
+{{/block}}

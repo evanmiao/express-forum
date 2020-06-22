@@ -1,0 +1,50 @@
+{{extend './_layouts/layout.html'}}
+
+{{block 'title'}}@{{user.loginname}} 的个人主页{{/block}}
+
+{{block 'head'}}
+<link rel="stylesheet" href="/public/stylesheets/user.css">
+{{/block}}
+
+{{block 'content'}}
+<div class="user-info">
+  <div class="header">
+    <a href="/">主页</a>
+    <span class="divider">/</span>
+  </div>
+  <section class="clearfix">
+    <img src="{{user.avatar_url}}" alt="头像" />
+    <span class="loginname">{{user.loginname}}</span>
+    <p class="user_profile">{{user.score}} 积分</p>
+    <p class="col_fade">注册时间 {{user.create_at | dateFormat}}</p>
+  </section>
+  <div class="topics">
+    <p class="topics_title">最近创建的话题</p>
+    <ul>
+      {{each user.recent_topics}}
+      <li>
+        <a href="/user/{{$value.author.loginname}}">
+          <img src="{{$value.author.avatar_url}}" />
+        </a>
+        <a href="/topic/{{$value.id}}" class="title">{{$value.title}}</a>
+        <span class="last_reply">{{$value.last_reply_at | dateFormat}}</span>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="replies">
+    <p class="replies_title">最近参与的话题</p>
+    <ul>
+      {{each user.recent_replies}}
+      <li>
+        <a href="/user/{{$value.author.loginname}}">
+          <img src="{{$value.author.avatar_url}}" />
+        </a>
+        <a href="/topic/{{$value.id}}" class="title">{{$value.title}}</a>
+        <span class="last_reply">{{$value.last_reply_at | dateFormat}}</span>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
+{{/block}}
