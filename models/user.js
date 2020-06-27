@@ -24,7 +24,14 @@ var userSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  score: Number,
+  score: {
+    type: Number,
+    default: 0
+  },
+  signature: {
+    type: String,
+    default: '这个人很懒，什么都没有留下。'
+  },
   recent_replies: [],
   recent_topics: []
 });

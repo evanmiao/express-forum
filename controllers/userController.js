@@ -84,10 +84,21 @@ exports.user_create_post = function (req, res, next) {
 
 // 由 GET 显示更新用户的表单
 exports.user_update_get = function (req, res, next) {
-  res.send('未实现：用户更新表单的 GET');
+  res.render('setting.html', { session: req.session.user });
 };
 
 // 由 POST 处理用户更新操作
 exports.user_update_post = function (req, res, next) {
-  res.send('未实现：更新用户的 POST');
+  var userInfo = {};
+  if (req.body.username) userInfo.loginname = req.body.username;
+  if (req.body.email) userInfo.email = req.body.email;
+  if (req.body.signature) userInfo.signature = req.body.signature;
+  if (req.body.password) userInfo.password = md5(req.body.password);
+  User.findById(req.session.user._id, function (err, user) {
+    if (err) return next(err);
+    user.update(userInfo, function (err, data) {
+      if (err) return next(err);
+      res.redirect('/');
+    });
+  });
 };

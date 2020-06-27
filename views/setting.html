@@ -1,0 +1,70 @@
+{{extend './_layouts/layout.html'}}
+
+{{block 'head'}}
+<style>
+  .setting {
+    height: 83.1vh;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 3px;
+  }
+
+  .header {
+    padding: 10px;
+    background-color: #f6f6f6;
+  }
+
+  .header .divider {
+    padding: 0 5px;
+    color: #ccc;
+  }
+
+  .header .title {
+    color: #999;
+  }
+
+  .header a {
+    color: #80bd01;
+    text-decoration: none;
+  }
+
+  .header a:hover {
+    text-decoration: underline;
+  }
+</style>
+{{/block}}
+
+{{block 'content'}}
+<div class="setting">
+  <div class="header">
+    <a href="/">主页</a>
+    <span class="divider">/</span>
+    <span class="title">设置</span>
+  </div>
+  <main>
+    <div class="container">
+      <form id="setting_form" action="/setting" method="POST">
+        <div>
+          <label for="username">请输入用户名</label>
+          <input type="text" name="username" id="username" />
+        </div>
+        <div>
+          <label for="email">请输入邮箱</label>
+          <input type="email" name="email" id="email" />
+        </div>
+        <div>
+          <label for="signature">请输入个性签名</label>
+          <input type="text" name="signature" id="signature" />
+        </div>
+        <div>
+          <label for="password">请输入密码</label>
+          <input type="password" name="password" id="password" />
+        </div>
+        <button type="submit" class="btn">提交</button>
+      </form>
+    </div>
+  </main>
+</div>
+{{/block}}
