@@ -1,19 +1,20 @@
 <div class="autherinfo">
   <div class="authersummay">
     <div class="topbar">作者</div>
-    <a href="/user/{{user.loginname}}">
-      <img src="{{user.avatar_url}}" />
+    <a href="/user/{{topic.author.loginname}}">
+      <img src="{{topic.author.avatar_url}}" />
     </a>
-    <a href="/user/user.loginname">
-      <span class="loginname">{{user.loginname}}</span>
+    <a href="/user/{{topic.author.loginname}}">
+      <span class="loginname">{{topic.author.loginname}}</span>
     </a>
-    <p class="user_profile">积分: {{user.score}}</p>
+    <p class="user_profile">积分: {{topic.author.score}}</p>
+    <p class="user_profile">{{topic.author.signature}}</p>
   </div>
   <div class="recent_topics">
     <div class="topics_title">作者最近主题</div>
     <div class="inner">
       <ul>
-        {{each user.recent_topics.slice(0, 5)}}
+        {{each topic.author.recent_topics.slice(0, 5)}}
         <li><a href="/topic/{{$value.id}}">{{$value.title}}</a></li>
         {{/each}}
       </ul>
@@ -23,7 +24,7 @@
     <div class="replies_title">作者最近回复</div>
     <div class="inner">
       <ul>
-        {{each user.recent_replies.slice(0, 5)}}
+        {{each topic.author.recent_replies.slice(0, 5)}}
         <li><a href="/topic/{{$value.id}}">{{$value.title}}</a></li>
         {{/each}}
       </ul>

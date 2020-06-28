@@ -13,9 +13,13 @@
   <div class="topic_header">
     <div class="header">
       <div class="topic_title">
-        <span class="{{if topic.good}}put_good{{/if}} {{if topic.top}}put_top{{/if}}">
-          <span>{{topic | tabFormat}}</span>
-        </span>{{topic.title}}
+        <span class="{{if topic.good}}put_good{{/if}} {{if topic.top}}put_top{{/if}}">{{topic | tabFormat}}</span>
+        <span>{{topic.title}}</span>
+        {{if session && session.loginname === topic.author.loginname}}
+        <form style="float: right;" id="delete_form" action="/topic/{{@topic._id | JSON.stringify | JSON.parse}}/delete" method="POST">
+          <button type="submit">删除话题</button>
+        </form>
+        {{/if}}
       </div>
       <ul>
         <li><span>发布于 {{topic.create_at | dateFormat}}</span></li>

@@ -29,11 +29,7 @@ var topicSchema = new Schema({
     type: Boolean,
     default: false
   },
-  author: {
-    loginname: String,
-    avatar_url: String
-  },
-  author_id: Schema.Types.ObjectId,
+  author: { type: Schema.Types.ObjectId, ref: "User" },
   is_collect: Boolean,
   visit_count: Number,
   reply_count:  Number,
