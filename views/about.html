@@ -3,11 +3,40 @@
 {{block 'title'}}关于{{/block}}
 
 {{block 'head'}}
-<link rel="stylesheet" href="/public/stylesheets/about.css">
+<link rel="stylesheet" href="/public/stylesheets/detail.css">
+<style>
+  main {
+    padding: 10px;
+  }
+
+  main section {
+    margin: 10px;
+  }
+
+  main section h2 {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  main section p {
+    font-size: 15px;
+    line-height: 2em;
+    overflow: auto;
+  }
+
+  main section a {
+    color: #80bd01;
+    text-decoration: none;
+  }
+
+  main section a:hover {
+    text-decoration: underline;
+  }
+</style>
 {{/block}}
 
 {{block 'content'}}
-<div class="about">
+<div class="detail">
   <div class="header">
     <a href="/">主页</a>
     <span class="divider">/</span>

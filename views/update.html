@@ -6,15 +6,16 @@
   form div {
     margin-bottom: 1rem;
   }
-  
+
   label {
     display: inline-block;
     margin-bottom: .5rem;
     color: #212529;
   }
-  
-  input[type=checkbox]+label {
-    margin: 0 .75rem 0 0;
+
+  .checkbox-wrap {
+    margin-bottom: 0;
+    margin-right: .75rem;
   }
 
   .form-control {
@@ -51,36 +52,41 @@
   <div class="header">
     <a href="/">主页</a>
     <span class="divider">/</span>
-    <span class="title">发布话题</span>
+    <span class="title">编辑话题</span>
   </div>
   <main>
     <div class="container">
-      <form id="create_form" action="/topic/create" method="POST">
+      <form id="update_form" action="/topic/{{topic._id | JSON.stringify | JSON.parse}}/update" method="POST">
         <div>
           <label for="tab">选择版块：</label>
           <select name="tab" id="tab" class="form-control" required>
             <option value="">请选择</option>
-            <option value="share">分享</option>
-            <option value="ask">问答</option>
-            <option value="job">招聘</option>
-            <option value="dev">客户端测试</option>
+            <option value="share" {{if topic.tab === 'share'}}selected{{/if}}>分享</option>
+            <option value="ask" {{if topic.tab === 'ask'}}selected{{/if}}>问答</option>
+            <option value="job" {{if topic.tab === 'job'}}selected{{/if}}>招聘</option>
+            <option value="dev" {{if topic.tab === 'dev'}}selected{{/if}}>客户端测试</option>
           </select>
         </div>
         <div>
           <label for="title">请输入标题</label>
-          <input type="text" name="title" id="title" class="form-control" required />
+          <input type="text" name="title" id="title" class="form-control" value="{{topic.title}}" required />
         </div>
         <div>
           <label for="content">请输入内容</label>
-          <textarea name="content" cols="30" rows="10" style="height: 120px;" id="content" class="form-control" required></textarea>
+          <textarea name="content" cols="30" rows="10" style="height: 120px;" id="content" class="form-control" required>{{topic.content}}</textarea>
         </div>
         <div>
-          <input type="checkbox" name="top" id="top" value="true" />
-          <label for="top">置顶</label>
-          <input type="checkbox" name="good" id="good" value="true" />
-          <label for="good">精华</label>
+          <label class="checkbox-wrap">
+            <input type="checkbox" {{if topic.top}}checked{{/if}} onclick="javascript:document.getElementById('top').value=this.checked" />
+            置顶
+          </label>
+          <input type="hidden" name="top" id="top" value="{{if topic.top}}true{{else}}false{{/if}}" />
+          <label class="checkbox-wrap">
+            <input type="checkbox" {{if topic.good}}checked{{/if}} onclick="javascript:document.getElementById('good').value=this.checked" />
+            精华
+          </label>
+          <input type="hidden" name="good" id="good" value="{{if topic.top}}true{{else}}false{{/if}}" />
         </div>
-        <input type="hidden" name="author" value="{{session._id}}" />
         <button type="submit" class="btn">提交</button>
       </form>
     </div>

@@ -1,0 +1,31 @@
+.detail {
+  height: 83.1vh;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+  background: #fff;
+  border-radius: 3px;
+
+  .header {
+    padding: 10px;
+    background-color: #f6f6f6;
+
+    .divider {
+      padding: 0 5px;
+      color: #ccc;
+    }
+
+    .title {
+      color: #999;
+    }
+
+    a {
+      color: #80bd01;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -15,8 +15,11 @@ router.post('/create', topic_controller.topic_create_post);
 // GET 请求话题
 router.get('/:id', topic_controller.topic_detail);
 
+// GET 请求删除话题
+router.get('/:id/delete', topic_controller.topic_delete_get);
+
 // POST 请求删除话题
-router.post('/:id/delete', topic_controller.topic_delete);
+router.post('/:id/delete', topic_controller.topic_delete_post);
 
 // GET 请求更新话题
 router.get('/:id/update', topic_controller.topic_update_get);

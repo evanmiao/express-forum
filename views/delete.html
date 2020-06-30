@@ -1,0 +1,54 @@
+{{extend './_layouts/layout.html'}}
+
+{{block 'head'}}
+<link rel="stylesheet" href="/public/stylesheets/detail.css">
+<style>
+  .tip {
+    margin-top: 4rem;
+    text-align: center;
+  }
+
+  .tip a {
+    color: #80bd01;
+    text-decoration: none;
+  }
+
+  .tip a:hover {
+    text-decoration: underline;
+  }
+
+  .form-wrap {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .form-wrap .btn {
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    font-size: 1rem;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+</style>
+{{/block}}
+
+{{block 'content'}}
+<div class="detail">
+  <div class="header">
+    <a href="/">主页</a>
+    <span class="divider">/</span>
+    <span class="title">删除话题</span>
+  </div>
+  <main>
+    <p class="tip">删除后无法恢复，确定要删除吗？<a href="/topic/{{id}}">返回</a></p>
+    <div class="form-wrap">
+      <form id="delete_form" action="/topic/{{id}}/delete" method="POST">
+        <button type="submit" class="btn">确认删除</button>
+      </form>
+    </div>
+  </main>
+</div>
+{{/block}}

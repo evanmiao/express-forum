@@ -5,6 +5,22 @@
 {{block 'head'}}
 <link rel="stylesheet" href="/public/stylesheets/topic.css">
 <link rel="stylesheet" href="/public/stylesheets/sidebar.css">
+<style>
+  .options {
+    float: right;
+  }
+
+  .options .btn {
+    font-size: 12px;
+    color: #80bd01;
+    border: none;
+    background: #fff;
+  }
+
+  .options .btn:hover {
+    text-decoration: underline;
+  }
+</style>
 {{/block}}
 
 {{block 'content'}}
@@ -15,17 +31,18 @@
       <div class="topic_title">
         <span class="{{if topic.good}}put_good{{/if}} {{if topic.top}}put_top{{/if}}">{{topic | tabFormat}}</span>
         <span>{{topic.title}}</span>
-        {{if session && session.loginname === topic.author.loginname}}
-        <form style="float: right;" id="delete_form" action="/topic/{{@topic._id | JSON.stringify | JSON.parse}}/delete" method="POST">
-          <button type="submit">删除话题</button>
-        </form>
-        {{/if}}
       </div>
       <ul>
         <li><span>发布于 {{topic.create_at | dateFormat}}</span></li>
         <li>&nbsp;<span>作者<a href="/user/{{topic.author.loginname}}">{{topic.author.loginname}}</a></span></li>
         <li>&nbsp;<span>{{topic.visit_count}} 次浏览</span></li>
         <li>&nbsp;<span>来自 {{topic | tabFormat}}</span></li>
+        {{if session && session.loginname === topic.author.loginname}}
+        <div class="options">
+          <a href="/topic/{{@topic._id | JSON.stringify | JSON.parse}}/update" class="btn">编辑</a>
+          <a href="/topic/{{@topic._id | JSON.stringify | JSON.parse}}/delete" class="btn">删除</a>
+        </div>
+        {{/if}}
       </ul>
     </div>
     <div class="topic_content" id="content">{{@topic.content}}</div>
